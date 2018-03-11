@@ -1,5 +1,7 @@
 export class Tile {
-    constructor(name) {
-        this.name = name;
+    constructor(parameters) {
+        this.x = parameters.x || 0;
+        this.y = parameters.y || 0;
+        this.bitmask = parameters.bitmask || 0;
     }
 }
