@@ -1,4 +1,13 @@
+/**
+ * Static functions to handle bit field operations
+ */
 export class BitField {
+
+    /**
+     * Returns the arguments as bit field.
+     * @param {...number} - zero or more fields.
+     * @returns {number} value - the bit field.
+     */
     static getBitField() {
         const numbers = Array.from(arguments).reverse();
 
