@@ -1,6 +1,6 @@
 {
   "name": "maze-tiles",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Calculates a maze based on tiles",
   "main": "dist/maze-tiles.node.min.js",
   "repository": {
