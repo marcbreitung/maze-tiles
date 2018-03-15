@@ -1,3 +1,5 @@
+import {BitField} from "../../../src/BitField/BitField";
+
 let assert = require('chai').assert;
 
 import {Tile} from './../../../src/Tile/Tile';
@@ -16,6 +18,15 @@ suite('Tiles', function () {
             assert.propertyVal(tiles, 'width', 5);
             assert.propertyVal(tiles, 'height', 5);
             assert.deepPropertyVal(tiles, 'tiles', {});
+        });
+    });
+    suite('#add(tile)', function () {
+        test('should add tile to attribute tiles', function () {
+            let fields = BitField.getBitField(0, 1, 0, 1, 1, 1, 0, 1, 0);
+            let tile = new Tile({'x': 1, 'y': 1, 'bitmask': fields});
+            let tiles = new Tiles({});
+            tiles.add(tile);
+            assert.deepPropertyVal(tiles, 'tiles', {'1-1': tile});
         });
     });
 });

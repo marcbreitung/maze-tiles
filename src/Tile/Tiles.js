@@ -4,4 +4,8 @@ export class Tiles {
         this.height = parameters.height || 3;
         this.tiles = {};
     }
+
+    add(tile) {
+        this.tiles[`${tile.x}-${tile.y}`] = tile;
+    }
 }
