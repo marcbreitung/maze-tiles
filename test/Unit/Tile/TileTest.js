@@ -9,6 +9,7 @@ suite('Tile', function () {
             assert.propertyVal(tile, 'x', 0);
             assert.propertyVal(tile, 'y', 0);
             assert.propertyVal(tile, 'bitmask', 0);
+            assert.deepPropertyVal(tile, 'neighbours', []);
         });
         test('should set x, y and bitmask with parameter values', function () {
             let tile = new Tile({'x': 10, 'y': 10, 'bitmask': 7});
