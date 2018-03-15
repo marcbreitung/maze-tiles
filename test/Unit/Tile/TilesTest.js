@@ -23,10 +23,10 @@ suite('Tiles', function () {
     suite('#add(tile)', function () {
         test('should add tile to attribute tiles', function () {
             let fields = BitField.getBitField(0, 1, 0, 1, 1, 1, 0, 1, 0);
-            let tile = new Tile({'x': 1, 'y': 1, 'bitmask': fields});
+            let tile = new Tile({'x': 1, 'y': 1, 'bit': fields});
             let tiles = new Tiles({});
             tiles.add(tile);
-            assert.deepPropertyVal(tiles, 'tiles', {'1-1': tile});
+            assert.deepPropertyVal(tiles, 'tiles', {'tile-1-1': tile});
         });
     });
 });
