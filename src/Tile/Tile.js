@@ -58,6 +58,14 @@ export class Tile {
                 return true;
             }
         }
+        // is bottom
+        if (tile.row - this.row === 1 && tile.column - this.column === 0) {
+            let thisTileBit = this.walkable.slice(6, this.walkable.length);
+            let tileTileBit = tile.walkable.slice(0, 3);
+            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
+                return true;
+            }
+        }
         return false;
     }
 }
