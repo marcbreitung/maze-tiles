@@ -22,12 +22,21 @@ export class Tile {
         let directions = [-1, 0, 1];
         directions.forEach((row) => {
             directions.forEach((column) => {
-                let index_row = this.row + row;
-                let index_column = this.column + column;
-                if (`tile-${this.row}-${this.column}` !== `tile-${index_row}-${index_column}` && tiles.tiles[`tile-${index_row}-${index_column}`]) {
-                    this.neighbours[`tile-${index_row}-${index_column}`] = tiles.tiles[`tile-${index_row}-${index_column}`];
-                }
+                this.addNeighbour(this.row + row, this.column + column, tiles);
             })
         });
+    }
+
+    /**
+     * Add existing neighbours
+     * @param {Number} row
+     * @param {Number} column
+     * @param {Tiles} tiles
+     */
+    addNeighbour(row, column, tiles) {
+        let id = `tile-${row}-${column}`;
+        if (`tile-${this.row}-${this.column}` !== id && tiles.tiles[id]) {
+            this.neighbours[id] = tiles.tiles[id];
+        }
     }
 }
