@@ -22,7 +22,9 @@ export class Tile {
         let directions = [-1, 0, 1];
         directions.forEach((row) => {
             directions.forEach((column) => {
-                this.addNeighbour(this.row + row, this.column + column, tiles);
+                if (row === 0 || column === 0) {
+                    this.addNeighbour(this.row + row, this.column + column, tiles);
+                }
             })
         });
     }
