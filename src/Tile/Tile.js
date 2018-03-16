@@ -39,49 +39,8 @@ export class Tile {
      */
     addNeighbour(row, column, tiles) {
         let id = `tile-${row}-${column}`;
-        if (`tile-${this.row}-${this.column}` !== id && tiles.tiles[id] && this.hasConnection(tiles.tiles[id])) {
+        if (`tile-${this.row}-${this.column}` !== id && tiles.tiles[id] && BitField.hasConnection(tiles.tiles[id], this)) {
             this.neighbours[id] = tiles.tiles[id];
         }
-    }
-
-    /**
-     * Checks if a connection exists between two tiles
-     * @param {Tile} tile - The tile to test
-     * @returns {boolean} - Returns true, if connection exists
-     */
-    hasConnection(tile) {
-        // is right
-        if (tile.row - this.row === 0 && tile.column - this.column === 1) {
-            let thisTileBit = this.walkable.filter((e, i) => (i + 1) % 3 === 0);
-            let tileTileBit = tile.walkable.filter((e, i) => (i + 1) % 3 === 1);
-            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
-                return true;
-            }
-        }
-        // is bottom
-        if (tile.row - this.row === 1 && tile.column - this.column === 0) {
-            let thisTileBit = this.walkable.slice(6, this.walkable.length);
-            let tileTileBit = tile.walkable.slice(0, 3);
-            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
-                return true;
-            }
-        }
-        // is left
-        if (tile.row - this.row === 0 && tile.column - this.column === -1) {
-            let thisTileBit = this.walkable.filter((e, i) => (i + 1) % 3 === 1);
-            let tileTileBit = tile.walkable.filter((e, i) => (i + 1) % 3 === 0);
-            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
-                return true;
-            }
-        }
-        // is top
-        if (tile.row - this.row === -1 && tile.column - this.column === 0) {
-            let thisTileBit = this.walkable.slice(0, 3);
-            let tileTileBit = tile.walkable.slice(6, this.walkable.length);
-            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
