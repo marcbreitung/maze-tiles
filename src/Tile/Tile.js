@@ -66,6 +66,14 @@ export class Tile {
                 return true;
             }
         }
+        // is left
+        if (tile.row - this.row === 0 && tile.column - this.column === -1) {
+            let thisTileBit = this.walkable.filter((e, i) => (i + 1) % 3 === 1);
+            let tileTileBit = tile.walkable.filter((e, i) => (i + 1) % 3 === 0);
+            if (BitField.getBitField(...thisTileBit) & BitField.getBitField(...tileTileBit)) {
+                return true;
+            }
+        }
         return false;
     }
 }

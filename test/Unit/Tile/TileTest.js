@@ -61,6 +61,7 @@ suite('Tile', function () {
             let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 0, 0, 0, 1, 1, 0, 0, 0]});
             assert.isFalse(tile_1_1.hasConnection(tile_1_2));
         });
+
         test('should return true if connection on the bottom exists', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tile_2_1 = new Tile({'row': 2, 'column': 1, 'walkable': [0, 1, 0, 0, 1, 0, 0, 1, 0]});
@@ -70,6 +71,17 @@ suite('Tile', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tile_2_1 = new Tile({'row': 2, 'column': 1, 'walkable': [0, 0, 0, 0, 1, 0, 0, 1, 0]});
             assert.isFalse(tile_1_1.hasConnection(tile_2_1));
+        });
+
+        test('should return true if connection on the left exists', function () {
+            let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 0, 0, 1, 1, 1, 0, 0, 0]});
+            let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
+            assert.isTrue(tile_1_2.hasConnection(tile_1_1));
+        });
+        test('should return true if no connection on the left exists', function () {
+            let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 0, 0, 1, 1, 1, 0, 0, 0]});
+            let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 0, 1, 0, 0, 1, 0]});
+            assert.isFalse(tile_1_2.hasConnection(tile_1_1));
         });
         test('should return false tiles are not neighbours', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
