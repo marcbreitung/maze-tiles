@@ -22,7 +22,7 @@ var tile = new MazeTiles.Tile(tileOptions);
 
 ## Tiles
 
-Tiles list. Calculates a graph baesd on the walkable parts defined in a tile.
+Tiles list. Calculates a graph based on the walkable parts defined in a tile.
 
 ```javascript
 var tilesOptions = {'width': 3, 'height': 3};
