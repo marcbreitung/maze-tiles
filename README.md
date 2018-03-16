@@ -16,7 +16,7 @@ Build a graph based on tiles. A tile is represented by 1 for walkable parts and 
 A single tile.
 
 ```javascript
-var tileOptions = {'x': 1, 'y': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]};
+var tileOptions = {'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]};
 var tile = new MazeTiles.Tile(tileOptions);
 ```
 
