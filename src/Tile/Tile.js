@@ -1,4 +1,4 @@
-import {BitField} from "../BitField/BitField";
+import {Tiles} from "./Tiles";
 
 export class Tile {
 
@@ -39,7 +39,7 @@ export class Tile {
      */
     addNeighbour(row, column, tiles) {
         let id = `tile-${row}-${column}`;
-        if (`tile-${this.row}-${this.column}` !== id && tiles.tiles[id] && BitField.hasConnection(tiles.tiles[id], this)) {
+        if (`tile-${this.row}-${this.column}` !== id && tiles.tiles[id] && Tiles.hasConnection(tiles.tiles[id], this)) {
             this.neighbours[id] = tiles.tiles[id];
         }
     }
