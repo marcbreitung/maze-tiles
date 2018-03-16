@@ -16,6 +16,6 @@ export class Tiles {
      * @param {Tile} tile - The tile to add.
      */
     add(tile) {
-        this.tiles[`tile-${tile.x}-${tile.y}`] = tile;
+        this.tiles[`tile-${tile.row}-${tile.column}`] = tile;
     }
 }

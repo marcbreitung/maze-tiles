@@ -1,5 +1,3 @@
-import {BitField} from "../../../src/BitField/BitField";
-
 let assert = require('chai').assert;
 
 import {Tile} from './../../../src/Tile/Tile';
@@ -22,7 +20,7 @@ suite('Tiles', function () {
     });
     suite('#add(tile)', function () {
         test('should add tile to attribute tiles', function () {
-            let tile = new Tile({'x': 1, 'y': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
+            let tile = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tiles = new Tiles({});
             tiles.add(tile);
             assert.deepPropertyVal(tiles, 'tiles', {'tile-1-1': tile});

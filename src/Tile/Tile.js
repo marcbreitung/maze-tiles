@@ -3,13 +3,13 @@ export class Tile {
     /**
      * Constructor for a Tile
      * @param {Object} parameters - The parameters.
-     * @param {Number} parameters.x - The position in x direction (row).
-     * @param {Number} parameters.y - The position in y direction (column).
+     * @param {Number} parameters.row - The position in x direction (row).
+     * @param {Number} parameters.column - The position in y direction (column).
      * @param {Array} parameters.walkable - The walkable parts of this tile.
      */
     constructor(parameters) {
-        this.x = parameters.x || 0;
-        this.y = parameters.y || 0;
+        this.row = parameters.row || 0;
+        this.column = parameters.column || 0;
         this.walkable = parameters.walkable || [];
         this.neighbours = {};
     }
@@ -20,12 +20,12 @@ export class Tile {
      */
     updateNeighbours(tiles) {
         let directions = [-1, 0, 1];
-        directions.forEach((x) => {
-            directions.forEach((y) => {
-                let index_x = this.x + x;
-                let index_y = this.y + y;
-                if (`tile-${this.x}-${this.y}` !== `tile-${index_x}-${index_y}` && tiles.tiles[`tile-${index_x}-${index_y}`]) {
-                    this.neighbours[`tile-${index_x}-${index_y}`] = tiles.tiles[`tile-${index_x}-${index_y}`];
+        directions.forEach((row) => {
+            directions.forEach((column) => {
+                let index_row = this.row + row;
+                let index_column = this.column + column;
+                if (`tile-${this.row}-${this.column}` !== `tile-${index_row}-${index_column}` && tiles.tiles[`tile-${index_row}-${index_column}`]) {
+                    this.neighbours[`tile-${index_row}-${index_column}`] = tiles.tiles[`tile-${index_row}-${index_column}`];
                 }
             })
         });
