@@ -19,6 +19,16 @@ export class Tiles {
      */
     add(tile) {
         this.tiles[`tile-${tile.row}-${tile.column}`] = tile;
+        this.update();
+    }
+
+    /**
+     * Updates the connection between tiles
+     */
+    update() {
+        for (let tile in this.tiles) {
+            this.tiles[tile].updateNeighbours(this);
+        }
     }
 
     /**
