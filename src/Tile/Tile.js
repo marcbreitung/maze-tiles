@@ -5,12 +5,12 @@ export class Tile {
      * @param {Object} parameters - The parameters.
      * @param {Number} parameters.x - The position in x direction (row).
      * @param {Number} parameters.y - The position in y direction (column).
-     * @param {Number} parameters.bit - The bit field 1 for way 0 for no way.
+     * @param {Array} parameters.walkable - The walkable parts of this tile.
      */
     constructor(parameters) {
         this.x = parameters.x || 0;
         this.y = parameters.y || 0;
-        this.bit = parameters.bit || 0;
+        this.walkable = parameters.walkable || [];
         this.neighbours = {};
     }
 
