@@ -27,7 +27,27 @@ Tiles list. Calculates a graph based on the walkable parts defined in a tile.
 ```javascript
 var tilesOptions = {'width': 3, 'height': 3};
 var tiles = new MazeTiles.Tiles(tilesOptions);
-tiles.add(new MazeTiles.Tile(tileOptions));
+tiles.addTile(new MazeTiles.Tile(tileOptions));
+```
+
+Gets the result as object with all calculated neighbours
+```javascript
+let tiles = new MazeTiles.Tiles({});
+let tilesToTest = [
+    new MazeTiles.Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 0, 1, 1, 0, 0, 0]}),
+    new MazeTiles.Tile({'row': 1, 'column': 2, 'walkable': [0, 0, 0, 1, 1, 0, 0, 1, 0]}),
+    new MazeTiles.Tile({'row': 1, 'column': 3, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+
+    new MazeTiles.Tile({'row': 2, 'column': 1, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+    new MazeTiles.Tile({'row': 2, 'column': 2, 'walkable': [0, 1, 0, 0, 1, 0, 0, 1, 0]}),
+    new MazeTiles.Tile({'row': 2, 'column': 3, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+
+    new MazeTiles.Tile({'row': 3, 'column': 1, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+    new MazeTiles.Tile({'row': 3, 'column': 2, 'walkable': [0, 1, 0, 0, 1, 1, 0, 0, 0]}),
+    new MazeTiles.Tile({'row': 3, 'column': 3, 'walkable': [0, 0, 0, 1, 1, 1, 0, 0, 0]})
+];
+tiles.addTiles(tilesToTest);
+let result = tiles.result();
 ```
 
 ## Bit Field

@@ -24,10 +24,10 @@ suite('Tile', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tiles = new Tiles({});
-            tiles.add(tile_1_1);
-            tiles.add(tile_1_2);
+            tiles.addTile(tile_1_1);
+            tiles.addTile(tile_1_2);
             tile_1_1.updateNeighbours(tiles);
-            assert.deepPropertyVal(tile_1_1, 'neighbours', {'tile-1-2': tile_1_2});
+            assert.deepPropertyVal(tile_1_1, 'neighbours', {'tile12': tile_1_2});
         });
     });
     suite('#addNeighbour(row, column, tiles)', function () {
@@ -35,17 +35,17 @@ suite('Tile', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tiles = new Tiles({});
-            tiles.add(tile_1_1);
-            tiles.add(tile_1_2);
+            tiles.addTile(tile_1_1);
+            tiles.addTile(tile_1_2);
             tile_1_1.addNeighbour(1, 2, tiles);
-            assert.deepPropertyVal(tile_1_1, 'neighbours', {'tile-1-2': tile_1_2});
+            assert.deepPropertyVal(tile_1_1, 'neighbours', {'tile12': tile_1_2});
         });
         test('should not update the tile neighbours if two tiles have no connection', function () {
             let tile_1_1 = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tile_1_2 = new Tile({'row': 1, 'column': 2, 'walkable': [0, 1, 0, 0, 1, 1, 0, 1, 0]});
             let tiles = new Tiles({});
-            tiles.add(tile_1_1);
-            tiles.add(tile_1_2);
+            tiles.addTile(tile_1_1);
+            tiles.addTile(tile_1_2);
             tile_1_1.addNeighbour(1, 2, tiles);
             assert.deepPropertyVal(tile_1_1, 'neighbours', {});
         });

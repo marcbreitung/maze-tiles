@@ -18,12 +18,56 @@ suite('Tiles', function () {
             assert.deepPropertyVal(tiles, 'tiles', {});
         });
     });
-    suite('#add(tile)', function () {
-        test('should add tile to attribute tiles', function () {
+    suite('#addTile(tile)', function () {
+        test('should add single tile to attribute tiles', function () {
             let tile = new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]});
             let tiles = new Tiles({});
-            tiles.add(tile);
-            assert.deepPropertyVal(tiles, 'tiles', {'tile-1-1': tile});
+            tiles.addTile(tile);
+            assert.deepPropertyVal(tiles, 'tiles', {'tile11': tile});
+        });
+    });
+    suite('#addTiles(tiles)', function () {
+        test('should add array of tiles to attribute tiles', function () {
+            let tiles = new Tiles({});
+            let tilesToAdd = [
+                new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]}),
+                new Tile({'row': 1, 'column': 2, 'walkable': [0, 1, 0, 1, 1, 1, 0, 1, 0]})
+            ];
+            tiles.addTiles(tilesToAdd);
+            assert.deepPropertyVal(tiles, 'tiles', {'tile11': tilesToAdd[0], 'tile12': tilesToAdd[1]});
+        });
+    });
+    suite('#result', function () {
+        test('should return true if connection on the right exists', function () {
+            let tiles = new Tiles({});
+            let tilesToTest = [
+                new Tile({'row': 1, 'column': 1, 'walkable': [0, 1, 0, 0, 1, 1, 0, 0, 0]}),
+                new Tile({'row': 1, 'column': 2, 'walkable': [0, 0, 0, 1, 1, 0, 0, 1, 0]}),
+                new Tile({'row': 1, 'column': 3, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+
+                new Tile({'row': 2, 'column': 1, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+                new Tile({'row': 2, 'column': 2, 'walkable': [0, 1, 0, 0, 1, 0, 0, 1, 0]}),
+                new Tile({'row': 2, 'column': 3, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+
+                new Tile({'row': 3, 'column': 1, 'walkable': [0, 0, 0, 0, 0, 0, 0, 0, 0]}),
+                new Tile({'row': 3, 'column': 2, 'walkable': [0, 1, 0, 0, 1, 1, 0, 0, 0]}),
+                new Tile({'row': 3, 'column': 3, 'walkable': [0, 0, 0, 1, 1, 1, 0, 0, 0]})
+            ];
+            tiles.addTiles(tilesToTest);
+
+            let result = tiles.result();
+
+            assert.property(result.tile11.neighbours, 'tile12');
+            assert.property(result.tile12.neighbours, 'tile11');
+
+            assert.property(result.tile12.neighbours, 'tile22');
+            assert.property(result.tile22.neighbours, 'tile12');
+
+            assert.property(result.tile22.neighbours, 'tile32');
+            assert.property(result.tile32.neighbours, 'tile22');
+
+            assert.property(result.tile32.neighbours, 'tile33');
+            assert.property(result.tile33.neighbours, 'tile32');
         });
     });
     suite('#hasConnection(tile)', function () {

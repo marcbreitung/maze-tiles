@@ -14,12 +14,30 @@ export class Tiles {
     }
 
     /**
-     * Adds a tile
+     * Adds a single tile
      * @param {Tile} tile - The tile to add.
      */
-    add(tile) {
-        this.tiles[`tile-${tile.row}-${tile.column}`] = tile;
+    addTile(tile) {
+        this.tiles[`tile${tile.row}${tile.column}`] = tile;
         this.update();
+    }
+
+    /**
+     * Adds an array of tiles
+     * @param {Array<Tile>} tiles - The tile to add.
+     */
+    addTiles(tiles) {
+        tiles.forEach((tile) => {
+            this.addTile(tile);
+        });
+    }
+
+    /**
+     * Returns an object with the calculated relations between the tiles
+     * @returns {object} tiles - The tile to add.
+     */
+    result() {
+        return this.tiles;
     }
 
     /**
