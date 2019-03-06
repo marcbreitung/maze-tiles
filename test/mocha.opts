@@ -1,1 +1,1 @@
---recursive --require babel-register
+--recursive --require @babel/register
